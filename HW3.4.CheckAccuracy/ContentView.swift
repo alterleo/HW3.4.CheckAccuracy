@@ -20,7 +20,8 @@ struct ContentView: View {
             HStack {
                 Text("0")
                 ColorSlider(sliderValue: $sliderValue,
-                            targetValue: $targetValue)
+                            targetValue: $targetValue,
+                            youScore: $youScore)
                 Text("100")
             }
             .padding()
@@ -41,13 +42,7 @@ struct ContentView: View {
     }
     
     func checkScore() {
-        youScore = computeScore()
         showingAlert.toggle()
-    }
-    
-    private func computeScore() -> Int {
-        let difference = abs(targetValue - sliderValue)
-        return 100 - difference
     }
 }
 

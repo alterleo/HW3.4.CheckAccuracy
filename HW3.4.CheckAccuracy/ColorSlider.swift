@@ -13,6 +13,7 @@ struct ColorSlider: View {
     @Binding var sliderValue: Int
     @State private var alpha = CGFloat(1)
     @Binding var targetValue: Int
+    @Binding var youScore: Int
     
     var body: some View {
         HStack {
@@ -26,13 +27,19 @@ struct ColorSlider: View {
         }
     }
     
-    func settingAlpha() {
-        alpha = CGFloat(1-Float(abs(targetValue - sliderValue))/100)
+    private func settingAlpha() {
+        youScore = computeScore()
+        alpha = CGFloat(Float(youScore)/100)
+    }
+    
+    private func computeScore() -> Int {
+        let difference = abs(targetValue - sliderValue)
+        return 100 - difference
     }
 }
 
 struct ColorSlider_Previews: PreviewProvider {
     static var previews: some View {
-        ColorSlider(sliderValue: .constant(50), targetValue: .constant(100))
+        ColorSlider(sliderValue: .constant(50), targetValue: .constant(100), youScore: .constant(0))
     }
 }
