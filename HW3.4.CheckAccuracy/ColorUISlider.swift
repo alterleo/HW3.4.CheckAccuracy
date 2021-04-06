@@ -16,14 +16,12 @@ struct ColorUISlider: UIViewRepresentable {
         let slider = UISlider(frame: .zero)
         slider.minimumValue = 0
         slider.maximumValue = 100
-        slider.thumbTintColor = UIColor(displayP3Red: 1, green: 0, blue: 0, alpha: alpha)
         
         slider.addTarget(
             context.coordinator,
             action: #selector(Coordinator.valueChanged),
             for: .valueChanged
         )
-        
         return slider
     }
     
